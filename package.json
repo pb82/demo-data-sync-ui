@@ -5,8 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "webpack --mode development && nodemon --watch ui server.js",
-    "build": "webpack --mode production"
+    "server": "webpack --mode development && nodemon --watch ui index.js",
+    "build": "webpack --mode production",
+    "start": "node ./index.js"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
