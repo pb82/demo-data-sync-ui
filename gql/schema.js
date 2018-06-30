@@ -1,4 +1,5 @@
-const { buildSchema } = require("graphql");
+const { buildSchema } = require("graphql")
+    , { info } = require("../logger");
 
 const Schema = buildSchema(`
     type Query {
@@ -10,7 +11,9 @@ const Schema = buildSchema(`
     }
 `);
 
-const listDataSources = () => {
+function listDataSources() {
+    info("listDataSources request");
+
     return [{
         id: 1,
         title: "best source eva"

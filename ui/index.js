@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Masthead, Nav, NavItem, TabContent, TabPane, TabContainer } from "patternfly-react";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 import DataSourcesView from "./components/DataSourcesView";
-import { Provider } from "react-redux";
-import {createStore, applyMiddleware} from "redux";
-import ReduxThunk from 'redux-thunk';
-import reducers from './reducers';
 
 const App = () => {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    const client = new ApolloClient({
+       uru: "/graphql"
+    });
 
     return (
-        <Provider store={store}>
+        <ApolloProvider client={client}>
             <div>
                 <Masthead
                     iconImg="img/logo.png"
@@ -35,7 +35,7 @@ const App = () => {
                     </TabContainer>
                 </div>
             </div>
-        </Provider>
+        </ApolloProvider>
     );
 };
 

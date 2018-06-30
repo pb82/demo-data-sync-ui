@@ -1,14 +1,33 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { dataSourcesFetch } from "../actions";
 import { CommonToolbar } from "./common/CommonToolbar"
-import _ from "lodash";
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
+
+const GET_DATA_SOURCES = gql`
+    {
+        dataSources {
+            id
+            title
+        }
+    }
+`;
+
+const DataSources = () => {
+    return <Query query={GET_DATA_SOURCES}>
+        {({loading, error, data}) => {
+            if (loading) return "Loading...";
+            if (error) return error.message;
+
+            return (
+                <div>
+                    {data.dataSources[0].title}
+                </div>
+            );
+        }}
+    </Query>
+};
 
 class DataSourcesView extends Component {
-    componentWillMount() {
-        this.props.dataSourcesFetch();
-    }
-
     getToolbarButtons() {
         return [
             {title: "Add new Data Source", cb: this.addDatasource}
@@ -20,13 +39,10 @@ class DataSourcesView extends Component {
     }
 
     render() {
-        console.log("=== props");
-        console.log(this.props);
-
         return (
           <div>
               <div>
-                <h1>The Data Sources View</h1>
+                  <DataSources/>
               </div>
               <CommonToolbar buttons={this.getToolbarButtons()}/>
           </div>
@@ -34,12 +50,5 @@ class DataSourcesView extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const dataSources = _.map(state.dataSources, (val, uid) => {
-        return {...val, uid};
-    });
 
-    return { dataSources };
-};
-
-export default connect(mapStateToProps, { dataSourcesFetch })(DataSourcesView);
+export default DataSourcesView;
