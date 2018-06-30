@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Masthead, Nav, NavItem, TabContent, TabPane, TabContainer } from "patternfly-react";
+import DataSourcesView from "./components/DataSourcesView";
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                         </Nav>
                         <TabContent>
                             <TabPane>
+                                <DataSourcesView/>
                             </TabPane>
                         </TabContent>
                     </div>
