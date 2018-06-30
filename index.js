@@ -21,6 +21,9 @@ App.get("/", (req, res) => {
     return res.sendFile(join(__dirname, "index.html"));
 });
 
+// Setup GraphQl Server
+require("./gql")(App);
+
 // Catch all other requests and return "Not found"
 App.get("*", (_, res) => {
     return res.sendStatus(404);
