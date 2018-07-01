@@ -2,12 +2,16 @@ const { buildSchema } = require("graphql")
     , { info } = require("../logger");
 
 const Schema = buildSchema(`
+    enum DataSourceType {
+        InMemory
+    },
     type Query {
         dataSources: [DataSource]
     },
     type DataSource {
-        id: Int
-        title: String
+        id: Int!       
+        name: String!
+        type: DataSourceType! 
     }
 `);
 
@@ -16,7 +20,12 @@ function listDataSources() {
 
     return [{
         id: 1,
-        title: "best source eva"
+        name: "best source eva",
+        type: "InMemory"
+    }, {
+        id: 2,
+        name: "another source",
+        type: "InMemory"
     }];
 };
 

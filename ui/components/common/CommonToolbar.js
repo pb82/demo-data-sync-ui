@@ -6,6 +6,7 @@ const CommonToolbar = ({buttons}) => {
      return (<Button
          style={{float: "right"}}
          key={idx}
+         bsStyle="primary"
          onClick={button.cb}>
          {button.title}
      </Button>);
@@ -13,7 +14,7 @@ const CommonToolbar = ({buttons}) => {
 
   return (<div className="toolbar-container">
             <Toolbar>
-                <input type="text" placeholder="Filter by Name" />
+                <input type="text" placeholder="Filter by Name" style={{height: "26px"}} />
                 {elements}
             </Toolbar>
   </div>);

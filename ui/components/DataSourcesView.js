@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { CommonToolbar } from "./common/CommonToolbar"
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import { ListView, DropdownKebab} from "patternfly-react";
 
 const GET_DATA_SOURCES = gql`
     {
         dataSources {
             id
-            title
+            name
+            type
         }
     }
 `;
@@ -18,8 +20,31 @@ const DataSources = () => {
             if (loading) return "Loading...";
             if (error) return error.message;
 
+            const items = data.dataSources.map((item, idx) => {
+                return (
+                    <ListView.Item
+                        id={idx.toString()}
+                        key={idx}
+                        className="ds-list-item"
+                        heading={item.type}
+                        description="---"
+                        leftContent={<span className="list-item-name">{item.name}</span>}
+                        actions={
+                            <div>
+                                <DropdownKebab pullRight>
+                                </DropdownKebab>
+                            </div>
+                        }
+                    >
+                    </ListView.Item>
+                )
+            });
+
             return (
                 <div>
+                    <ListView>
+                        {items}
+                    </ListView>
                 </div>
             );
         }}
