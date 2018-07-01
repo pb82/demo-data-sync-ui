@@ -1,34 +1,11 @@
 "use strict";
 
-const bodyParser = require("body-parser")
-    , express = require("express")
-    , { join } = require("path")
-    , { port } = require("./config")
-    , { info } = require("./logger");
-
+const { port } = require("./config")
+    , { info } = require("./logger")
+    , { run } = require("./server");
 
 const Banner = "AeroGear Sync UI";
 
-const App = express();
-
-// Set-up payload parsers. We accept url encoded and json values
-App.use(bodyParser.urlencoded({extended: false}));
-App.use(bodyParser.json());
-
-App.use(express.static(join(__dirname, "public")));
-
-App.get("/", (req, res) => {
-    return res.sendFile(join(__dirname, "index.html"));
-});
-
-// Setup GraphQl Server
-require("./gql")(App);
-
-// Catch all other requests and return "Not found"
-App.get("*", (_, res) => {
-    return res.sendStatus(404);
-});
-
-App.listen(port, () => {
-    info(`${Banner} running on port ${port}`);
+run(() => {
+    info(`${Banner} running on port ${port}`)
 });
