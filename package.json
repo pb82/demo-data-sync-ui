@@ -8,7 +8,9 @@
     "server": "webpack --mode development && nodemon --watch ui index.js",
     "build": "webpack --mode production",
     "start": "node ./index.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "docker:build": "docker build -t aerogear/data-sync-ui:latest .",
+    "docker:push": "echo 'TODO'"
   },
   "dependencies": {
     "apollo-boost": "^0.1.10",
