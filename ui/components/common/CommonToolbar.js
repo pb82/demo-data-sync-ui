@@ -11,11 +11,12 @@ const CommonToolbar = ({buttons}) => {
      </Button>);
   });
 
-  return (
-      <div className="bottom-fixed">
-        <Toolbar>{elements}</Toolbar>
-      </div>
-  )
+  return (<div className="toolbar-container">
+            <Toolbar>
+                <input type="text" placeholder="Filter by Name" />
+                {elements}
+            </Toolbar>
+  </div>);
 };
 
 export { CommonToolbar };

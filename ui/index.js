@@ -19,6 +19,9 @@ const App = () => {
                     navToggle={false}>
                 </Masthead>
                 <div>
+                    <div className="ag-header">
+                        <p>My Data Sync API</p>
+                    </div>
                     <TabContainer id="basic-tabs">
                         <div>
                             <Nav bsClass="nav nav-tabs">
@@ -30,6 +33,7 @@ const App = () => {
                                 <TabPane>
                                     <DataSourcesView/>
                                 </TabPane>
+
                             </TabContent>
                         </div>
                     </TabContainer>

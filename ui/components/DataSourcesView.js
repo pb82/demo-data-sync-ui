@@ -20,7 +20,6 @@ const DataSources = () => {
 
             return (
                 <div>
-                    {data.dataSources[0].title}
                 </div>
             );
         }}
@@ -41,10 +40,10 @@ class DataSourcesView extends Component {
     render() {
         return (
           <div>
+              <CommonToolbar buttons={this.getToolbarButtons()}/>
               <div>
                   <DataSources/>
               </div>
-              <CommonToolbar buttons={this.getToolbarButtons()}/>
           </div>
         );
     }
