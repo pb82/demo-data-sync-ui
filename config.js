@@ -5,5 +5,9 @@ module.exports = {
 
     logging: {
         level: 'info'
+    },
+
+    graphql: {
+        debug: true
     }
 };
